@@ -1,0 +1,31 @@
+{
+  "name": "caption-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "ts-node-dev --ignore-watch node_modules src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuliosj/caption-bot.git"
+  },
+  "author": "Túlio Jardim",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/tuliosj/caption-bot/issues"
+  },
+  "homepage": "https://github.com/tuliosj/caption-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "jimp": "^0.13.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.11",
+    "dotenv": "^8.2.0",
+    "ts-node": "^8.10.2",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.9.5"
+  }
+}
