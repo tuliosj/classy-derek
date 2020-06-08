@@ -2,14 +2,28 @@ import Jimp from "jimp";
 import path from "path";
 
 const Editor = async (
-  file_name: string,
+  file_path: string,
   caption_top: string,
   caption_bottom: string
 ) => {
-  // Abrindo arquivo e fonte
-  const file_path = path.resolve(__dirname, "..", "tmp", file_name);
-  const font_path = path.resolve(__dirname, "..", "fonts", "IMPACT_48.fnt");
+  // Definindo write_path
+  const write_dir = path.resolve(__dirname, "..", "..", "..", "tmp");
+  const write_path = `${write_dir}/dscrd-${file_path.split("/").pop()}`;
+
   const loaded_image = await Jimp.read(file_path);
+
+  // Resize da imagem para 800px no máximo
+  loaded_image.scaleToFit(800, 800);
+
+  // Abrindo fonte
+  const font_path = path.resolve(
+    __dirname,
+    "..",
+    "..",
+    "..",
+    "fonts",
+    "IMPACT_48.fnt"
+  );
   const font = await Jimp.loadFont(font_path);
 
   // Definição dos textos na imagem
@@ -23,9 +37,6 @@ const Editor = async (
     alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
     alignmentY: Jimp.VERTICAL_ALIGN_BOTTOM,
   };
-
-  // Resize da imagem para 800px no máximo
-  loaded_image.scaleToFit(800, 800);
 
   // Escrevendo
   loaded_image.print(
@@ -46,10 +57,9 @@ const Editor = async (
   );
 
   // Salvando arquivo
-  loaded_image.write(
-    path.resolve(__dirname, "..", "tmp", `edited-${file_name}`)
-  );
-  console.log("Image edited!");
+  loaded_image.write(write_path);
+
+  return write_path;
 };
 
 export default Editor;
