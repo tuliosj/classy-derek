@@ -15,7 +15,7 @@ const scroll_max =
 const wrapper_height = $("#wrapper").height();
 const wrapper_width = $("#wrapper").width();
 
-$(document).ready(() => {
+$(window).on("load", () => {
   $(this).scrollTop(0);
   $("#wrapper").css({ visibility: "visible" });
   $a.css({
