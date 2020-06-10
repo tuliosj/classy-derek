@@ -38,9 +38,8 @@ $window.on("load", () => {
         right: ($window.scrollTop() / scroll_max) * 2 * wrapper_width + a_right,
       });
       $b.css({
-        top: b_top - ($window.scrollTop() / scroll_max) * wrapper_height * 0.75,
-        left:
-          b_left - ($window.scrollTop() / scroll_max) * wrapper_width * 0.75,
+        top: b_top - ($window.scrollTop() / scroll_max) * wrapper_height * 0.5,
+        left: b_left - ($window.scrollTop() / scroll_max) * wrapper_width * 0.5,
       });
       $c.css({
         top:
@@ -62,16 +61,18 @@ $window.on("load", () => {
     const a_bottom = (document.documentElement.clientHeight - $a.height()) / 2;
     const a_right = (document.documentElement.clientWidth - $a.width()) / 2;
 
-    const b_bottom = document.documentElement.clientHeight;
+    const b_top = document.documentElement.clientHeight;
     const b_right = document.documentElement.clientWidth;
+
+    const c_bottom = document.documentElement.clientHeight;
 
     // Default mobile
     $a.css({
       bottom: a_bottom,
       right: a_right,
     });
-    $b.css({ bottom: b_bottom, right: b_right });
-    $c.css({ top: document.documentElement.clientHeight, left: 0 });
+    $b.css({ top: b_top, right: b_right });
+    $c.css({ bottom: c_bottom, left: 36 });
     $("#footer").css({
       left: (document.documentElement.clientWidth - $("#footer").width()) / 2,
     });
@@ -84,14 +85,16 @@ $window.on("load", () => {
         right: ($window.scrollTop() / scroll_max) * 2 * wrapper_width + a_right,
       });
       $b.css({
-        bottom:
-          b_bottom - ($window.scrollTop() / scroll_max) * wrapper_height * 0.75,
-        right: (1 - $window.scrollTop() / scroll_max) * wrapper_width,
+        top: b_top - ($window.scrollTop() / scroll_max) * b_top,
+        right:
+          b_right -
+          ($window.scrollTop() / scroll_max) * b_right +
+          (wrapper_width - $b.width() - 48) / 2,
       });
       $c.css({
-        top:
-          document.documentElement.clientHeight -
-          ($window.scrollTop() / scroll_max) * wrapper_height * 1.4,
+        bottom:
+          c_bottom -
+          ($window.scrollTop() / scroll_max) * (c_bottom + $c.height()),
       });
     });
   }

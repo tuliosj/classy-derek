@@ -95,7 +95,6 @@ a {
   position: absolute;
   width: fit-content;
   height: fit-content;
-  padding: 24px;
 }
 
 /* Footer */
@@ -160,5 +159,9 @@ footer {
 
   #title-container {
     flex-direction: column;
+  }
+
+  #what-he-does {
+    padding: 24px;
   }
 }
