@@ -17,7 +17,9 @@ client.on("error", console.error);
 // https://discord.com/oauth2/authorize?client_id=719551785978822756&scope=bot&permissions=3319808
 client.on("ready", () => {
   if (client.user) {
-    console.log(`Logged in as ${client.user.tag}!`);
+    console.log(
+      `Logged in as ${client.user.tag} on ${client.guilds.cache.size} servers!`
+    );
     client.user.setActivity("Just call for Derek!");
   } else {
     console.log("Ready, but user not defined!");

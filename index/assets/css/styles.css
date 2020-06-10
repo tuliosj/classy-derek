@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Brandon Text Black";
+  src: url("../fonts/brandon-text-black.otf");
+}
+
+body {
+  height: 200vh;
+  margin: 0;
+
+  font-family: "Source Sans Pro", sans-serif;
+  background-color: #ff9595;
+  color: #342b38;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+}
+
+/* Basic elements */
+
+h1,
+h2,
+h3,
+ul {
+  margin: 0;
+}
+
+h1 {
+  font-family: "Merriweather", serif;
+  font-size: 72px;
+  font-weight: 900;
+}
+h2 {
+  font-family: "Merriweather", serif;
+  font-size: 48px;
+  font-weight: 400;
+}
+h3 {
+  font-size: 48px;
+  font-weight: 600;
+}
+ul {
+  font-size: 36px;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+:link,
+:visited {
+  color: #cb5858;
+}
+
+/* Wrapper */
+
+#wrapper {
+  visibility: hidden;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+}
+
+/* Title */
+
+#title-container {
+  position: absolute;
+  display: flex;
+
+  width: fit-content;
+  height: fit-content;
+  white-space: nowrap;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.derek {
+  height: 405px;
+  margin-right: 24px;
+}
+
+/* Welcome! */
+
+#welcome {
+  position: absolute;
+
+  font-family: "Brandon Text Black", sans-serif;
+  text-align: center;
+  color: #fff;
+  font-size: 36px;
+}
+
+#welcome > * {
+  margin: 0;
+}
+
+/* What he does */
+
+#what-he-does {
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+}
+
+/* Footer */
+
+footer {
+  position: absolute;
+  top: 200vh;
+  display: flex;
+  justify-content: center;
+}

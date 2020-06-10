@@ -13,7 +13,7 @@ export default (message: Discord.Message) => {
           meme(message);
         } else {
           message.channel.send(
-            "Derek only works with something like: derek meme *top text* -bottom text- optional message"
+            "Derek only works with something like: derek meme [top text] (bottom text) optional message"
           );
         }
       } else {
