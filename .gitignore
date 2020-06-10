@@ -3,3 +3,4 @@ package-lock.json
 .env
 bot/tmp/*
 !bot/tmp/.gitkeep
+.vscode/
