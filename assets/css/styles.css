@@ -6,6 +6,7 @@
 html,
 body {
   height: 200vh;
+  height: calc(var(--vh, 1vh) * 200);
   padding: 0;
   margin: 0;
 }
@@ -54,6 +55,7 @@ a {
   visibility: hidden;
   width: 100vw;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   position: fixed;
   overflow: hidden;
 }
@@ -95,15 +97,6 @@ a {
   position: absolute;
   width: fit-content;
   height: fit-content;
-}
-
-/* Footer */
-
-footer {
-  position: absolute;
-  top: 200vh;
-  display: flex;
-  justify-content: center;
 }
 
 @media (min-width: 875px) {
