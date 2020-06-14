@@ -21,8 +21,8 @@ export default async (message: Discord.Message) => {
       return err && console.log(err);
     });
   } else {
-    message.channel.send(
-      "Derek's power was way too much for Discord. Not Derek's fault!"
+    console.log(
+      "Se isso printou é porque eu não entendo nada de processos em concorrência."
     );
   }
 };

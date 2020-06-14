@@ -1,10 +1,12 @@
 {
-  "name": "caption-bot",
+  "name": "classy-derek",
   "version": "1.0.0",
   "description": "",
   "main": "app.ts",
   "scripts": {
-    "dev": "ts-node-dev --ignore-watch node_modules src/app.ts"
+    "dev": "ts-node-dev --ignore-watch node_modules src/app.ts",
+    "knex:seed": "knex --knexfile knexfile.ts seed:run",
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest"
   },
   "repository": {
     "type": "git",
@@ -18,10 +20,13 @@
   "homepage": "https://github.com/tuliosj/caption-bot#readme",
   "dependencies": {
     "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
     "jimp": "^0.13.0",
-    "dotenv": "^8.2.0"
+    "knex": "^0.21.1",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
+    "@types/knex": "^0.16.1",
     "@types/node": "^14.0.11",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.44",

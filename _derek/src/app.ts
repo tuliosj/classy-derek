@@ -2,7 +2,7 @@ import Discord from "discord.js";
 import dotenv from "dotenv";
 import path from "path";
 dotenv.config({
-  path: path.resolve(__dirname, "..", "..", ".env"),
+  path: path.resolve(__dirname, "..", ".env"),
 });
 
 import commands from "./commands";
@@ -13,8 +13,10 @@ client.login(process.env.token);
 
 client.on("error", console.error);
 
-// Link para adicionar bot:
+// Link para adicionar bot (permissões básicas):
 // https://discord.com/oauth2/authorize?client_id=719551785978822756&scope=bot&permissions=3319808
+// Link para adicionar bot (admin):
+// https://discord.com/oauth2/authorize?client_id=719551785978822756&scope=bot&permissions=8
 client.on("ready", () => {
   if (client.user) {
     console.log(
@@ -40,4 +42,14 @@ client.on("message", (message) => {
 
   // look for commands
   commands(message);
+});
+
+client.on("messageReactionAdd", async (reaction, user) => {
+  // Ignore DMs
+  if (reaction.message.channel.type === "dm") return;
+  if (!reaction.message.guild || !reaction.message.guild.available) return;
+
+  // Ignore bot messages and reactions
+  if (reaction.message.system || reaction.message.author.bot || user.bot)
+    return;
 });

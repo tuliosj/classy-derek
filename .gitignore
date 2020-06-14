@@ -1,6 +1,14 @@
+# env
+.vscode/
+.env
+
+# npm
 node_modules/
 package-lock.json
-.env
+
+# bot images
 bot/tmp/*
 !bot/tmp/.gitkeep
-.vscode/
+
+# sqlite
+*.sqlite
