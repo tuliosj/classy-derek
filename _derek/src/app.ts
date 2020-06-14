@@ -6,6 +6,9 @@ dotenv.config({
 });
 
 import commands from "./commands";
+import GuildController from "./controllers/GuildController";
+
+const guildController = new GuildController();
 
 const client = new Discord.Client({ messageCacheMaxSize: 7 });
 
@@ -30,10 +33,12 @@ client.on("ready", () => {
 
 client.on("guildCreate", (guild) => {
   console.log(`[guildCreate] Added to server "${guild.name}".`);
+  guildController.newGuild(guild);
 });
 
 client.on("guildDelete", (guild) => {
   console.log(`[guildDelete] Removed from server "${guild.name}".`);
+  guildController.delete(guild.id);
 });
 
 client.on("message", (message) => {
@@ -44,12 +49,12 @@ client.on("message", (message) => {
   commands(message);
 });
 
-client.on("messageReactionAdd", async (reaction, user) => {
-  // Ignore DMs
-  if (reaction.message.channel.type === "dm") return;
-  if (!reaction.message.guild || !reaction.message.guild.available) return;
+// client.on("messageReactionAdd", async (reaction, user) => {
+//   // Ignore DMs
+//   if (reaction.message.channel.type === "dm") return;
+//   if (!reaction.message.guild || !reaction.message.guild.available) return;
 
-  // Ignore bot messages and reactions
-  if (reaction.message.system || reaction.message.author.bot || user.bot)
-    return;
-});
+//   // Ignore bot messages and reactions
+//   if (reaction.message.system || reaction.message.author.bot || user.bot)
+//     return;
+// });

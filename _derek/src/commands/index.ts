@@ -26,18 +26,24 @@ const switchCase = async (message: Discord.Message, locale: string) => {
 
   // Server config
   else if (message.content.search(regex.server) >= 0) {
-    await guildController.delete(message.author.id);
-    const new_locale = await guildController.create(
-      message,
-      i18n[locale].guildController.prompt
-    );
-    if (new_locale === "expired") {
-      message.channel.send(i18n[locale].guildController.expired);
-    } else if (new_locale === "unauthorized") {
-      message.channel.send(i18n[locale].guildController.unauthorized);
+    if (
+      message.channel.type === "text" &&
+      message.member?.hasPermission("MANAGE_GUILD")
+    ) {
+      await guildController.delete(message.guild!.id);
+      const new_locale = await guildController.create(
+        message.channel,
+        message.author.id,
+        i18n[locale].guildController.prompt
+      );
+      if (new_locale === "expired") {
+        message.channel.send(i18n[locale].guildController.expired);
+      } else {
+        locale = new_locale;
+        message.channel.send(i18n[locale].guildController.saved);
+      }
     } else {
-      locale = new_locale;
-      message.channel.send(i18n[locale].guildController.saved);
+      message.channel.send(i18n[locale].guildController.unauthorized);
     }
   }
 
@@ -56,6 +62,11 @@ const switchCase = async (message: Discord.Message, locale: string) => {
         i18n[locale].userController.saved(message.author.username)
       );
     }
+  }
+
+  // Help
+  else if (message.content.search(regex.help) >= 0) {
+    message.channel.send(i18n[locale].help);
   }
 
   // Default response

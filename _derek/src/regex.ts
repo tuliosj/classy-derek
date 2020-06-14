@@ -1,5 +1,6 @@
 export default {
   derek: /derek/i,
+  help: /help/i,
   meme: {
     find: /(meme)|(caption)/i,
     syntax: /(meme)|(caption).*\[.*\].*\(.*\)/i,
