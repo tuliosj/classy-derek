@@ -1,10 +1,6 @@
 import Discord from "discord.js";
 import knex from "../database/connection";
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 class UserController {
   async create(message: Discord.Message, prompt: string): Promise<string> {
     return await message.author
@@ -32,7 +28,6 @@ class UserController {
           await knex("users").insert({
             id: message.author.id,
             locale: lang,
-            dmchannel: localeQuestion.channel.id,
           });
           await localeQuestion.delete();
           return lang;

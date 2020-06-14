@@ -7,5 +7,6 @@ export default {
     bottom: /(?<=\().*(?=\))/i,
     rest: /(?<=\(.*\)).*/i,
   },
+  server: /(server.*config)|(config.*server)|(server.*pref)|(pref.*server)/i,
   user: /(config)|(pref)/i,
 };

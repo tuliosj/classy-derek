@@ -3,10 +3,12 @@ import Discord from "discord.js";
 
 import meme from "./meme";
 import UserController from "../controllers/UserController";
+import GuildController from "../controllers/GuildController";
 
 import i18n from "../i18n";
 
 const userController = new UserController();
+const guildController = new GuildController();
 
 const switchCase = async (message: Discord.Message, locale: string) => {
   // Meme
@@ -19,6 +21,23 @@ const switchCase = async (message: Discord.Message, locale: string) => {
       }
     } else {
       message.channel.send(i18n[locale].meme.missingImage);
+    }
+  }
+
+  // Server config
+  else if (message.content.search(regex.server) >= 0) {
+    await guildController.delete(message.author.id);
+    const new_locale = await guildController.create(
+      message,
+      i18n[locale].guildController.prompt
+    );
+    if (new_locale === "expired") {
+      message.channel.send(i18n[locale].guildController.expired);
+    } else if (new_locale === "unauthorized") {
+      message.channel.send(i18n[locale].guildController.unauthorized);
+    } else {
+      locale = new_locale;
+      message.channel.send(i18n[locale].guildController.saved);
     }
   }
 
@@ -54,8 +73,9 @@ export default async (message: Discord.Message) => {
     message.content.search(regex.derek) >= 0 ||
     message.channel.type === "dm"
   ) {
+    const guild_locale = await guildController.check(message);
     const user_locale = await userController.check(message);
-    const locale = user_locale || "en_US";
+    const locale = user_locale || guild_locale || "en_US";
 
     switchCase(message, locale);
   }
