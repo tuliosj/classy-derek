@@ -3,7 +3,7 @@ export default {
   help: /help/i,
   meme: {
     find: /(meme)|(caption)/i,
-    syntax: /(meme)|(caption).*\[.*\].*\(.*\)/i,
+    syntax: /((meme)|(caption)).*\[.*\].*\(.*\)/i,
     top: /(?<=\[).*(?=\])/i,
     bottom: /(?<=\().*(?=\))/i,
     rest: /(?<=\(.*\)).*/i,
